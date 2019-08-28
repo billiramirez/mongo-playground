@@ -27,3 +27,13 @@ describe('Reading Users out of the database', () => {
       });
   })
 });
+
+
+
+/**
+ * Different ways to find a record in mongodb with mongoose
+ * 
+ * 1. find  => this return an array
+ * 2. findOne =>  this return the first record which match the criteria
+ * 
+ */
