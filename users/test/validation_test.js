@@ -24,7 +24,7 @@ describe('Validating records', () => {
         const { message } = validationResult.errors.name;
         assert(message === 'Name must be longer that 2 characters');
         done();
-      }) 
+      }); 
   });
 
-})
+});

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const PostSchema = require('./post');
 
 const Schema = mongoose.Schema;
+
 
 const UserSchema = new Schema({
   name: {
@@ -11,9 +13,14 @@ const UserSchema = new Schema({
     }, 
     required: [true, 'The name is required']
   },
-  postCount: Number
+  postCount: Number,
+  posts: [PostSchema]
 });
 
+/**
+ * [User description]
+ * @var  {Object}
+ */
 const User = mongoose.model('user', UserSchema);
 
 module.exports = User;
