@@ -21,7 +21,7 @@ describe('Deleting a user', () => {
 
   it('class method remove', (done) => {
     // Remove a bunch of records with some given criteria
-    User.remove({ name: 'Joe' })
+    User.deleteOne({ name: 'Joe' })
       .then(() => User.findOne({ name: 'Joe' }))
       .then( user => {
         assert(user === null);
@@ -29,12 +29,22 @@ describe('Deleting a user', () => {
       });
   });
 
-  it('class method findAndRemove', () => {
-
+  it('class method findAndRemove', (done) => {
+    User.findOneAndDelete({ name: 'Joe' })
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then( user => {
+        assert(user === null);
+        done();
+      });
   });
 
-  it('class method findByIdAndRemove', () => {
-
+  it('class method findByIdAndRemove', (done) => {
+    User.findByIdAndDelete(joe._id)
+      .then(() => User.findOne({ name: 'Joe' }))
+      .then( user => {
+        assert(user === null);
+        done();
+      });
   })
 });
 
@@ -44,7 +54,8 @@ describe('Deleting a user', () => {
  * Different ways to delete a record in mongodb with mongoose
  * 
  * 1. remove
- * 2. findOneAndRemove
- * 3. findByIdAndRemove
+ * 2. deleteOne
+ * 3. findOneAndDelete
+ * 4. findByIdAndDelete
  * 
  */
