@@ -12,8 +12,12 @@ before((done) => {  //before is executed once for all your test
 })
 
 beforeEach((done) => { //before each works per each test
-  mongoose.connection.collections.users.drop(() => {
-    // Ready to run the next text!
-    done();
-  });
+  const { users, comments, blogposts } = mongoose.connection.collections;
+    users.drop(() => {
+      comments.drop(() => {
+        blogposts.drop(() => {
+          done();
+        })
+      })
+    })
 })
