@@ -43,7 +43,6 @@ describe('Associations', () => {
         }
       })
       .then( user => {
-        console.log(user.blogPosts[0].comments[0]);
         assert(user.name === 'Joe');
         assert(user.blogPosts[0].title === 'Js is Great');
         assert(user.blogPosts[0].comments[0].content === 'Congrats of a new test');

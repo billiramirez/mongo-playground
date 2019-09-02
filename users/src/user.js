@@ -25,6 +25,13 @@ UserSchema.virtual('postCount').get(function (){
   return this.posts.length;
 });
 
+UserSchema.pre('remove', function(next){
+  const BlogPost = mongoose.model('blogPost');
+  // this === instance
+  BlogPost.remove({ _id: { $in: this.blogPosts}}) //hey, go to the BlogPost collection and remove all the records whos Ids are in this array
+    .then(() => next()); //let's go to the next middleware
+});
+
 /**
  * [User description]
  * @var  {Object}
