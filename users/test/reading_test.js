@@ -33,7 +33,10 @@ describe('Reading Users out of the database', () => {
   });
 
   it('can skip and limit the result set', (done) => {
-    User.find({}).skip(1).limit(2)
+    User.find({})
+    .sort({ name: 1 }) //order by asc
+    .skip(1)
+    .limit(2)
       .then( users => {
         assert(users[0].name === 'Joe');
         assert(users[1].name === 'Maria');
